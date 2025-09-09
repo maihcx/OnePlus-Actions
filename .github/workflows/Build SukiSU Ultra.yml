@@ -236,11 +236,11 @@ jobs:
           echo "🌐 正在初始化内核仓库..."
           mkdir kernel_workspace && cd kernel_workspace
          
-          repo init -u https://github.com/Xiaomichael/kernel_manifest.git -b refs/heads/oneplus/${{ github.event.inputs.CPU }} -m ${{ github.event.inputs.FEIL }}.xml --depth=1
+          repo init -u https://github.com/maihcx/kernel_manifest.git -b refs/heads/oneplus/${{ github.event.inputs.CPU }} -m ${{ github.event.inputs.FEIL }}.xml --depth=1
           echo "🔄 同步代码库(使用$(nproc --all)线程)..."
           repo sync -c -j$(nproc --all) --no-tags --no-clone-bundle --force-sync
           
-          echo "Kernel version:-${{ github.event.inputs.ANDROID_VERSION }}-oki-xiaoxiaow"
+          echo "Kernel version:-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"
           rm kernel_platform/common/android/abi_gki_protected_exports_* || echo "No protected exports!"
           rm kernel_platform/msm-kernel/android/abi_gki_protected_exports_* || echo "No protected exports!"
           sed -i 's/ -dirty//g' kernel_platform/common/scripts/setlocalversion
@@ -249,9 +249,9 @@ jobs:
           sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' kernel_platform/common/scripts/setlocalversion
           sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' kernel_platform/msm-kernel/scripts/setlocalversion
           sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' kernel_platform/external/dtc/scripts/setlocalversion
-          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-xiaoxiaow"|' kernel_platform/common/scripts/setlocalversion            
-          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-xiaoxiaow"|' kernel_platform/msm-kernel/scripts/setlocalversion
-          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-xiaoxiaow"|' kernel_platform/external/dtc/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"|' kernel_platform/common/scripts/setlocalversion            
+          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"|' kernel_platform/msm-kernel/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"|' kernel_platform/external/dtc/scripts/setlocalversion
 
           echo "✅ 内核配置完成"
          
@@ -468,7 +468,7 @@ jobs:
       - name: "📦 Package Kernel | 打包内核"
         run: |
           echo "📦 准备AnyKernel3打包环境..."
-          git clone https://github.com/Xiaomichael/AnyKernel3 --depth=1
+          git clone https://github.com/maihcx/AnyKernel3 --depth=1
           rm -rf ./AnyKernel3/.git
           mkdir -p kernel_workspace/kernel_platform/out/Final-Image-Find/
           dir1=""
