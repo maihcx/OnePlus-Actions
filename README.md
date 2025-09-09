@@ -28,6 +28,7 @@ Lấy **Oneplus 12** làm ví dụ:
 ### Cách kiểm tra mã bộ xử lý
 
 ![Cách kiểm tra mã bộ xử lý](https://github.com/user-attachments/assets/fc217103-24ef-45fa-a7e1-f13cfd64f771)
+
 Nó được viết bên dưới Branches tương ứng. Nếu nó xuất hiện `using make build` Đừng lo lắng về điều đó
 
 ## Chuyển đổi đề xuất
