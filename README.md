@@ -5,7 +5,7 @@
 ## Support devices
 
 > [!TIP]
-> **CURRENTLY ONLY SUPPORTS KERNEL 6.1 AND BELOW**
+> **HIỆN TẠI CHỈ HỖ TRỢ KERNEL 6.1 TRỞ XUỐNG**
 
 ## User Guide
 
