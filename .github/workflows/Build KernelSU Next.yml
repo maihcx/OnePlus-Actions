@@ -231,7 +231,7 @@ jobs:
           echo "🔄 Đồng bộ hóa cơ sở mã (sử dụng luồng $(nproc --all))..."
           repo sync -c --optimized-fetch --prune -j$(nproc --all) --no-tags --no-clone-bundle --force-sync
 
-          echo "Kernel version:-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"
+          echo "Kernel version:-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"
           rm kernel_platform/common/android/abi_gki_protected_exports_* || echo "No protected exports!"
           rm kernel_platform/msm-kernel/android/abi_gki_protected_exports_* || echo "No protected exports!"
           sed -i 's/ -dirty//g' kernel_platform/common/scripts/setlocalversion
@@ -240,9 +240,9 @@ jobs:
           sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' kernel_platform/common/scripts/setlocalversion
           sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' kernel_platform/msm-kernel/scripts/setlocalversion
           sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' kernel_platform/external/dtc/scripts/setlocalversion
-          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"|' kernel_platform/common/scripts/setlocalversion            
-          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"|' kernel_platform/msm-kernel/scripts/setlocalversion
-          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"|' kernel_platform/external/dtc/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/common/scripts/setlocalversion            
+          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/msm-kernel/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/external/dtc/scripts/setlocalversion
 
           BASE=$(make -s -C kernel_platform/msm-kernel kernelversion)
           FULL=$(make -s -C kernel_platform/msm-kernel kernelrelease)
