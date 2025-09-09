@@ -231,7 +231,7 @@ jobs:
           echo "🔄 Đồng bộ hóa cơ sở mã (sử dụng luồng $(nproc --all))..."
           repo sync -c --optimized-fetch --prune -j$(nproc --all) --no-tags --no-clone-bundle --force-sync
 
-          echo "Kernel version:-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"
+          echo "Kernel version:-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"
           rm kernel_platform/common/android/abi_gki_protected_exports_* || echo "No protected exports!"
           rm kernel_platform/msm-kernel/android/abi_gki_protected_exports_* || echo "No protected exports!"
           sed -i 's/ -dirty//g' kernel_platform/common/scripts/setlocalversion
@@ -240,9 +240,9 @@ jobs:
           sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' kernel_platform/common/scripts/setlocalversion
           sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' kernel_platform/msm-kernel/scripts/setlocalversion
           sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' kernel_platform/external/dtc/scripts/setlocalversion
-          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/common/scripts/setlocalversion            
-          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/msm-kernel/scripts/setlocalversion
-          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/external/dtc/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"|' kernel_platform/common/scripts/setlocalversion            
+          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"|' kernel_platform/msm-kernel/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-oki-vieos"|' kernel_platform/external/dtc/scripts/setlocalversion
 
           echo "Kernel full: $res"
           echo "KERNEL_FULL_VERSION=$res" >> $GITHUB_ENV
