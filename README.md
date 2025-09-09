@@ -1,6 +1,6 @@
 ## OnePlus Kernel Open Source
 
-[![OnePlus Repository](https://img.shields.io/badge/OnePlus-Repository-red)](https://github.com/Xiaomichael/kernel_manifest)
+[![OnePlus Repository](https://img.shields.io/badge/OnePlus-Repository-red)](https://github.com/maihcx/kernel_manifest)
 
 ## Support devices
 
@@ -16,18 +16,18 @@ Lấy **Oneplus 12** làm ví dụ:
 - `_u` hậu tố：Android 14
 - `_t` hậu tố：Android 13
 
-![Ví dụ về tập tin cấu hình](https://github.com/user-attachments/assets/88f6940b-4b2c-462f-b8fa-3d9dd2f2faec)
+![Ví dụ về tập tin cấu hình](https://github.com/user-attachments/assets/7d30d34f-95ff-418d-a7ad-205566814df2)
 
 ### lựa chọn Branches
 
 1. Nhấp vào `Branches` để chuyển đổi các nhánh bộ xử lý
 2. Chọn cấu hình phù hợp với thiết bị của bạn
 
-![Ví dụ lựa chọn Branches](https://github.com/user-attachments/assets/58f31536-b88e-4613-9865-3e0574868928)
+![Ví dụ lựa chọn Branches](https://github.com/user-attachments/assets/7c04928e-430a-4c2b-aabb-8c8a83a1d387)
 
 ### Cách kiểm tra mã bộ xử lý
 
-![Cách kiểm tra mã bộ xử lý](https://github.com/user-attachments/assets/fc217103-24ef-45fa-a7e1-f13cfd64f771)
+![Cách kiểm tra mã bộ xử lý](https://github.com/user-attachments/assets/82ea9c63-da2d-40fe-a076-27711099d0e3)
 
 Nó được viết bên dưới Branches tương ứng. Nếu nó xuất hiện `using make build` Đừng lo lắng về điều đó
 
