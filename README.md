@@ -40,4 +40,4 @@ Nó được viết bên dưới Branches tương ứng. Nếu nó xuất hiện
 
 ## Ví dụ về cấu hình Runtime
 
-![{BF5F0169-D752-481A-BA95-FCDD8483A359}](https://github.com/user-attachments/assets/8f875661-3955-46c4-b65c-06f40afbc122)
+![{BF5F0169-D752-481A-BA95-FCDD8483A359}](https://github.com/user-attachments/assets/a0b95be2-e3cb-4591-b853-83398acf0153)
