@@ -20,35 +20,7 @@ on:
         default: 'sm8650'
         
       FEIL:
-        description: | 
-          <script>
-            document.addEventListener("DOMContentLoaded", function() {
-              const deviceSelect = document.querySelector('[name="inputs[device]"]');
-              const cpuSelect = document.querySelector('[name="inputs[cpu]"]');
-              const cpuOptions = {
-                "oneplus_ace_3v": ["sm7675"],
-                "oneplus_nord_4": ["sm7675"],
-                "oneplus_ace5": ["sm8650"]
-              };
-
-              function updateCpuOptions() {
-                const device = deviceSelect.value;
-                cpuSelect.innerHTML = "";
-                cpuOptions[device].forEach(cpu => {
-                  const opt = document.createElement("option");
-                  opt.value = cpu;
-                  opt.textContent = cpu;
-                  cpuSelect.appendChild(opt);
-                });
-              }
-
-              if (deviceSelect && cpuSelect) {
-                deviceSelect.addEventListener("change", updateCpuOptions);
-                updateCpuOptions();
-              }
-            });
-          </script>
-          Thiết bị
+        description: "Thiết bị"
         required: true
         type: choice
         options:
