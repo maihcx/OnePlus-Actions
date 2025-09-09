@@ -16,7 +16,6 @@ ksuver = os.environ.get("KSUVER", "v0.0")
 # Template tin nhắn
 MSG_TEMPLATE = """
 <b>New Build Published!</b>
-#oki
 #{device}
 <pre>Kernel Info
 kernelver: {kernelversion}
