@@ -115,7 +115,7 @@ jobs:
       CCACHE_COMPILERCHECK: "%compiler% -dumpmachine; %compiler% -dumpversion"
       CCACHE_NOHASHDIR: "true"
       CCACHE_HARDLINK: "true"
-      CCACHE_DIR: /home/runner/.ccache  
+      CCACHE_DIR: /home/runner/.ccache
       CCACHE_MAXSIZE: 15G
       
     steps:
@@ -184,7 +184,7 @@ jobs:
           echo "✅ Tất cả các phụ thuộc đã được cài đặt thành công"
          
       # ====================== Cache manager ======================
-      - name: "💾 Khôi phục cache"
+      - name: "💾 Khôi phục ccache"
         uses: actions/cache@v3
         with:
           path: ${{ env.CCACHE_DIR }}
@@ -217,7 +217,7 @@ jobs:
       # ====================== Source ======================
       - name: "📥 Cài đặt công cụ Repo"
         run: |
-          echo "⬇️ Đang tải xuống công cụ kho lưu trữ..."
+          echo "⬇️ Đang tải xuống công cụ repo..."
           curl -fsSL https://storage.googleapis.com/git-repo-downloads/repo > ~/repo
           chmod a+x ~/repo
           sudo mv ~/repo /usr/local/bin/repo
@@ -286,7 +286,7 @@ jobs:
           cp ../susfs4ksu/kernel_patches/include/linux/* ./common/include/linux/
            
           # Apply patches
-          echo "🔧 Đang dán miếng vá..."
+          echo "🔧 Áp dụng bản vá..."
           cd ./common
           if [ "${{ github.event.inputs.lz4kd }}" = "Off" ] && [ "${{ github.event.inputs.KERNEL_VERSION }}" = "6.1" ]; then
             echo "📦 Áp dụng bản vá lz4+zstd..."
@@ -308,9 +308,9 @@ jobs:
           patch -p1 --fuzz=3 < scope_min_manual_hooks_v1.4.patch
           echo "✅ Tất cả các bản vá đã được áp dụng"
            
-      - name: "⚙️ Cấu hình tùy chọn hạt nhân"
+      - name: "⚙️ Cấu hình tùy chọn kernel"
         run: |
-          echo "⚙️ Đang cấu hình các tùy chọn biên dịch hạt nhân..."
+          echo "⚙️ Đang cấu hình các tùy chọn biên dịch kernel..."
           cd kernel_workspace/kernel_platform
           
           echo "📦 Bật Hook thủ công..."
@@ -361,6 +361,7 @@ jobs:
           
           if [ "${{ github.event.inputs.proxy }}" == "On" ]; then
             # Add proxy config
+            echo "📦 Thêm tối ưu hóa proxy..."
             echo "CONFIG_BPF_STREAM_PARSER=y" >> ./common/arch/arm64/configs/gki_defconfig
             echo "CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y" >> ./common/arch/arm64/configs/gki_defconfig
             echo "CONFIG_NETFILTER_XT_SET=y" >> ./common/arch/arm64/configs/gki_defconfig
@@ -466,7 +467,7 @@ jobs:
          name: ${{ steps.set_name.outputs.ARTIFACT_NAME }}
          path: ./AnyKernel3/*
 
-      - name: "📝 Find zram.ko & crypto_zstdn.ko | tìm zram.ko & crypto_zstdn.ko"
+      - name: "📝 Tìm zram.ko & crypto_zstdn.ko | Tìm zram.ko & crypto_zstdn.ko"
         # if: ${{ github.event.inputs.lz4kd == 'On' }}
         run: |
           find -name zram.ko
