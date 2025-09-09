@@ -244,11 +244,8 @@ jobs:
           sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/msm-kernel/scripts/setlocalversion
           sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/external/dtc/scripts/setlocalversion
 
-          BASE=$(make -s -C kernel_platform/msm-kernel kernelversion)
-          FULL=$(make -s -C kernel_platform/msm-kernel kernelrelease)
-          echo "Kernel base: $BASE"
-          echo "Kernel full: $FULL"
-          echo "KERNEL_FULL_VERSION=$FULL" >> $GITHUB_ENV
+          echo "Kernel full: $res"
+          echo "KERNEL_FULL_VERSION=$res" >> $GITHUB_ENV
 
           echo "✅ Cấu hình kernel đã hoàn tất"
 
