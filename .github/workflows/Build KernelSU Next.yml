@@ -244,42 +244,15 @@ jobs:
           sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/msm-kernel/scripts/setlocalversion
           sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/external/dtc/scripts/setlocalversion
 
+          BASE=$(make -s -C kernel_platform/msm-kernel kernelversion)
+          FULL=$(make -s -C kernel_platform/msm-kernel kernelrelease)
+          echo "Kernel base: $BASE"
+          echo "Kernel full: $FULL"
+          echo "KERNEL_FULL_VERSION=$FULL" >> $GITHUB_ENV
+
           echo "✅ Cấu hình kernel đã hoàn tất"
 
       # ====================== Kernel customize ======================
-      - name: "🔎 Detect full kernel version, patch setlocalversion & export KERNEL_FULL_VERSION"
-        run: |
-          ANDROID="${{ github.event.inputs.ANDROID_VERSION }}"
-
-          # Try get base version from Makefile (prefer make kernelversion)
-          if [ -f kernel_platform/common/Makefile ]; then
-            BASE=$(make -s -C kernel_platform/common kernelversion 2>/dev/null || \
-              awk '/^VERSION =/{v=$3} /^PATCHLEVEL =/{p=$3} /^SUBLEVEL =/{s=$3} END{if(v && p && s) print v"."p"."s; else print "0.0.0"}' kernel_platform/common/Makefile)
-          else
-            BASE="0.0.0"
-          fi
-          echo "Detected BASE version: $BASE"
-
-          # Patch each setlocalversion but KEEP $res and append your suffix
-          for f in kernel_platform/common/scripts/setlocalversion \
-                   kernel_platform/msm-kernel/scripts/setlocalversion \
-                   kernel_platform/external/dtc/scripts/setlocalversion; do
-            if [ -f "$f" ]; then
-              sed -i 's/ -dirty//g' "$f"
-              sed -i '$i res=$(echo "$res" | sed '\''s/-dirty//g'\'')' "$f" || true
-              # Replace the last echo "$res" with echo "$res-<ANDROID>-ksn-vieos"
-              sed -i '$s|echo "\$res"|echo "$res-'"${ANDROID}"'-ksn-vieos"|' "$f" || true
-              echo "Patched $f"
-            fi
-          done
-
-          # Now query final kernelversion (this will call the patched setlocalversion)
-          FINAL=$(make -s -C kernel_platform/common kernelversion 2>/dev/null || echo "${BASE}-${ANDROID}-ksn-vieos")
-          echo "FINAL kernel tag: $FINAL"
-
-          # Export for later steps (naming artifact, passing to Python)
-          echo "KERNEL_FULL_VERSION=$FINAL" >> $GITHUB_ENV
-          
       - name: "⚡ Thiết lập KernelSU Next"
         run: |
           cd kernel_workspace/kernel_platform
