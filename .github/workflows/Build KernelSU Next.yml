@@ -244,9 +244,6 @@ jobs:
           sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/msm-kernel/scripts/setlocalversion
           sed -i '$s|echo "\$res"|echo "-${{ github.event.inputs.ANDROID_VERSION }}-ksn-vieos"|' kernel_platform/external/dtc/scripts/setlocalversion
 
-          echo "Kernel full: $res"
-          echo "KERNEL_FULL_VERSION=$res" >> $GITHUB_ENV
-
           echo "✅ Cấu hình kernel đã hoàn tất"
 
       # ====================== Kernel customize ======================
@@ -529,7 +526,7 @@ jobs:
           CHATID: ${{secrets.CHATID}}
           BOT_TOKEN: ${{secrets.BOT_TOKEN}}
           MESSAGE_THREAD_ID: ${{secrets.MESSAGE_THREAD_ID}}
-          KERNEL_VERSION: ${{ env.KERNEL_FULL_VERSION }}
+          KERNEL_VERSION: ${{ github.event.inputs.ANDROID_VERSION}}-${{ github.event.inputs.KERNEL_VERSION }}
           DEVICE: ${{ github.event.inputs.FEIL }}
           KPM: Not Support
           LZ4KD: ${{ github.event.inputs.lz4kd }}
