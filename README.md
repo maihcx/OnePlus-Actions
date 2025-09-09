@@ -11,7 +11,7 @@
 
 ### MÔ TẢ TẬP TIN CẤU HÌNH
 
-以**Oneplus 12**为例：
+Lấy **Oneplus 12** làm ví dụ:
 - không có hậu tố：Android 15
 - `_u` hậu tố：Android 14
 - `_t` hậu tố：Android 13
